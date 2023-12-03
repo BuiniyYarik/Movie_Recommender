@@ -1,6 +1,5 @@
 import pandas as pd
-import numpy as np
-from sklearn.linear_model import ElasticNet, LinearRegression
+from sklearn.linear_model import ElasticNet
 from sklearn.preprocessing import MinMaxScaler
 
 
@@ -54,7 +53,7 @@ def recommend_top_k_movies_lr(user_id, k=10):
     X = data_merged.drop(['rating', 'timestamp', 'zip_code', 'age', 'genres'], axis=1)
 
     # Fit the model
-    model = LinearRegression()
+    model = ElasticNet(alpha=1, l1_ratio=0.5)
     model.fit(X.drop(['user_id', 'movie_id'], axis=1), data_merged['rating'])
 
     # Prepare user features for prediction

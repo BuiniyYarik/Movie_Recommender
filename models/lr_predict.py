@@ -24,6 +24,16 @@ def aggregate_genres(row):
 
 
 def recommend_top_k_movies_lr(user_id, k=10):
+    """
+    Recommend top K movies for a user using the Linear Regression model
+
+    Parameters:
+    user_id (int): The user ID
+    k (int): The number of movies to recommend
+
+    Returns:
+    pandas.DataFrame: A DataFrame of the top K movie recommendations
+    """
     # Load movie titles for recommendation
     movie_titles = pd.read_csv('../data/raw/u.item', sep='|', encoding='latin-1', header=None, usecols=[0, 1])
     movie_titles.columns = ['movie_id', 'title']
